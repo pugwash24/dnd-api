@@ -13,16 +13,24 @@ class CreateCharacterAbilitiesTable extends Migration
      */
     public function up()
     {
-        //
+	    Schema::create('character_abilities', function (Blueprint $table) {
+		    $table->increments('id');
+		    $table->unsignedInteger('character_id');
+		    $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
+		    $table->unsignedInteger('ability_id');
+		    $table->foreign('ability_id')->references('id')->on('abilities')->onDelete('cascade');
+
+		    $table->timestamps();
+	    });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('character_abilities');
     }
 }

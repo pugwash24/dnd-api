@@ -16,11 +16,11 @@ class CreateArmoursTable extends Migration
         Schema::create('armours', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-	        $table->integer('player_id')->unsigned();
+	        $table->integer('player_id')->unsigned()->nullable();
+	        $table->integer('campaign_id')->unsigned()->nullable();
 	        $table->text('description')->nullable();
 	        $table->string('type');
 	        $table->integer('armour_class')->unsigned();
-	        $table->boolean('add_dex')->default(0);
 	        $table->boolean('add_dex')->default(0);
 	        $table->boolean('stealth_disadvantage')->default(0);
 	        $table->integer('str_requirement')->unsigned()->nullable();
@@ -28,6 +28,7 @@ class CreateArmoursTable extends Migration
 	        $table->integer('modifier')->default(0);
 
 	        $table->foreign('player_id')->references('id')->on('users');
+	        $table->foreign('campaign_id')->references('id')->on('campaigns');
 
 	        $table->timestamps();
         });

@@ -15,6 +15,10 @@ class CreateFeatsTable extends Migration
     {
         Schema::create('feats', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('description');
+	        $table->string('requirements');
+
             $table->timestamps();
         });
     }

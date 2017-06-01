@@ -13,16 +13,24 @@ class CreateCharacterArmoursTable extends Migration
      */
     public function up()
     {
-        //
+	    Schema::create('character_armours', function (Blueprint $table) {
+		    $table->increments('id');
+		    $table->unsignedInteger('character_id');
+		    $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
+		    $table->unsignedInteger('armour_id');
+		    $table->foreign('armour_id')->references('id')->on('armours')->onDelete('cascade');
+
+		    $table->timestamps();
+	    });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('character_armours');
     }
 }

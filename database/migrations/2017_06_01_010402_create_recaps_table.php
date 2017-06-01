@@ -15,6 +15,7 @@ class CreateRecapsTable extends Migration
     {
         Schema::create('recaps', function (Blueprint $table) {
             $table->increments('id');
+            $table->dateTime('recap_date');
             $table->timestamps();
         });
     }

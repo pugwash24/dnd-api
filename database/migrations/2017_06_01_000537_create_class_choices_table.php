@@ -15,6 +15,11 @@ class CreateClassChoicesTable extends Migration
     {
         Schema::create('class_choices', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('level');
+	        $table->integer('class_id')->unsigned();
+
+	        $table->foreign('class_id')->references('id')->on('character_classes')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

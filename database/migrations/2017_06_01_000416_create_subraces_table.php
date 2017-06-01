@@ -17,7 +17,6 @@ class CreateSubracesTable extends Migration
 	        $table->increments('id');
 	        $table->string('name');
 	        $table->integer('race_id')->unsigned();
-	        $table->foreign('race_id')->references('id')->on('races');
 	        $table->integer('str_increase')->default(0);
 	        $table->integer('dex_increase')->default(0);
 	        $table->integer('con_increase')->default(0);
@@ -25,6 +24,9 @@ class CreateSubracesTable extends Migration
 	        $table->integer('wis_increase')->default(0);
 	        $table->integer('cha_increase')->default(0);
 	        $table->boolean('has_darkvision')->default(0);
+
+	        $table->foreign('race_id')->references('id')->on('races')->onDelete('cascade');
+
 	        // TODO: Saving throw advantages need to be in here at some point
 
 	        $table->timestamps();

@@ -17,7 +17,13 @@ class CreateItemsTable extends Migration
 	        $table->increments('id');
 	        $table->string('name');
 	        $table->string('description')->nullable();
+	        $table->integer('player_id')->unsigned()->nullable();
+	        $table->integer('campaign_id')->unsigned()->nullable();
 	        $table->integer('weight')->default(0);
+
+	        $table->foreign('player_id')->references('id')->on('users');
+	        $table->foreign('campaign_id')->references('id')->on('campaigns');
+
 	        $table->timestamps();
         });
     }

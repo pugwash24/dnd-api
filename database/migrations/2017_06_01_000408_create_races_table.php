@@ -26,6 +26,7 @@ class CreateRacesTable extends Migration
 	        $table->integer('speed')->default(0);
 	        $table->string('size')->default('medium');
 	        $table->boolean('has_darkvision')->default(0);
+
 	        // TODO: Saving throw advantages need to be in here at some point
 
 	        $table->timestamps();
