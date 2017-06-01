@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Character\Character;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -26,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+	/**
+	 * A Player (User) can have many Characters
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function characters()
+	{
+		return $this->hasMany(Character::class);
+    }
 }
